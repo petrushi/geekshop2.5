@@ -10,7 +10,7 @@ from authapp.forms import UserLoginForm, UserRegisterForm, UserEditForm, UserPro
 
 
 def login(request):
-    title = 'входа'
+    title = 'вход'
 
     login_form = UserLoginForm(data=request.POST)
     next = request.GET['next'] if 'next' in request.GET.keys() else ''
