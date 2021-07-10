@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('is_delete', models.BooleanField(default=False)),
             ],
             options={
-                'verbose_name': ('категория',),
+                'verbose_name': 'категория',
                 'verbose_name_plural': 'категории',
             },
         ),
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainapp.productcategory', verbose_name='категория')),
             ],
             options={
-                'verbose_name': ('продукт',),
+                'verbose_name': 'продукт',
                 'verbose_name_plural': 'продукты',
             },
         ),

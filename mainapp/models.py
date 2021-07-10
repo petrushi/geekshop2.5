@@ -76,5 +76,5 @@ class Product(models.Model):
         return f'{self.name} - {self.id} -- {self.created}'
 
     class Meta:
-        verbose_name = 'продукт',
+        verbose_name = 'продукт'
         verbose_name_plural = 'продукты'

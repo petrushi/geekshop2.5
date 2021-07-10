@@ -1,6 +1,6 @@
 <div class="header clearfix">
     <a href="{% url 'index' %}" class="logo"></a>
-    <ul class="menu">
+    <ul class="menu" style="height: 30px;">
         <li><a href="{% url 'index' %}" class="{% if request.resolver_match.route == '' %}
                     active
                   {% endif %}">домой</a></li>
@@ -31,15 +31,20 @@
                   <a href="{% url 'auth:login' %}">войти</a>
                 {% endif %}
             </li>
+            {% if basket %}
+            <li>
+                <a href="{% url 'basket:list' %}" class="fa fa-shopping-basket">
+                    <span>
+                        {{ basket.0.total_cost|floatformat:0 }} руб
+                        ({{ basket.0.total_quantity }} шт.)
+                    </span>
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="#" class="search"></a>
+            </li>
     </ul>
-    {% if basket %}
-        <a href="{% url 'basket:list' %}" class="fa fa-shopping-basket">
-            <span>
-                {{ basket.0.total_cost|floatformat:0 }} руб
-                ({{ basket.0.total_quantity }} шт.)
-            </span>
-        </a>
-    {% endif %}
-    <a href="#" class="search"></a>
+
 
 </div>

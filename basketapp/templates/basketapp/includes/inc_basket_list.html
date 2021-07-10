@@ -15,7 +15,7 @@
               <th scope="row">{{ forloop.counter }}</th>
               <td>{{ item.product }}</td>
               <td><input type="number" name="{{ item.pk }}" min="0" value="{{ item.quantity }}"></td>
-              <td><a href="{% url 'basket:remove' item.pk %}">x</a></td>
+              <td><a href="{% url 'basket:remove' item.pk %}">&times;</a></td>
           </tr>
         {% endfor %}
 

@@ -94,7 +94,8 @@ html, body {
 	width: 23px;
 	height: 23px;	
 	background-image: url(img/search.png);
-    margin-top: 67px;
+    margin-left: 45px;
+	background-repeat: no-repeat;
 }
 .basket {
 	display: block;
