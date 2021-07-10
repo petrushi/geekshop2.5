@@ -12,9 +12,15 @@
                       {% endif %}">контакты</a></li>
         {% if user.is_authenticated %}
             <li>
-                <a href="{% url 'auth:edit' %}">
-                    {{ user.first_name|default:'Пользователь' }}
-                </a>
+                <div class="dropdown">
+                    <button class="dropbtn">пользователь</button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'auth:edit' %}">
+                            {{ user.first_name|default:'профиль' }}
+                        </a>
+                      <a href="#">заказы</a>
+                    </div>
+                </div>
             </li>
         {% endif %}
     {% if user.is_superuser %}
@@ -45,6 +51,5 @@
                 <a href="#" class="search"></a>
             </li>
     </ul>
-
 
 </div>
