@@ -1,18 +1,3 @@
-"""geekshop URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -22,7 +7,7 @@ from authapp import urls as authapp_urls
 from mainapp import urls as mainapp_urls
 from adminapp import urls as adminapp_urls
 from basketapp import urls as basketapp_urls
-
+from ordersapp import urls as ordersapp_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +16,8 @@ urlpatterns = [
     path('auth/', include(authapp_urls, namespace='auth'), name='auth'),
     path('products/', include(mainapp_urls, namespace='products'), name='products'),
     path('basket/', include(basketapp_urls, namespace='basket'), name='basket'),
-
+    path('order/', include(ordersapp_urls, namespace='order'), name='order'),
+    
     path('', views.index, name='index'),
     path('contacts/', views.contacts, name='contacts'),
     path('', include('social_django.urls', namespace='social')),

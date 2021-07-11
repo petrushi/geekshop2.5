@@ -3,6 +3,8 @@ from django.urls import reverse, reverse_lazy
 
 from adminapp.forms import UserRegisterForm, ProductEditForm, ProductCategoryEditForm
 from authapp.models import User
+from ordersapp.models import Order
+
 from django.shortcuts import get_object_or_404, render
 from mainapp.models import Product, ProductCategory
 from django.contrib.auth.decorators import user_passes_test
@@ -20,50 +22,17 @@ class UserListView(LoginRequiredMixin, ListView):
         return User.objects.filter(is_delete=False)
 
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def users(request):
-#     title = 'админка/пользователи'
-#
-#     users_list = User.objects.filter(is_delete=False).order_by('-is_active', '-is_superuser', '-is_staff', 'username')
-#
-#     context = {
-#         'title': title,
-#         'objects': users_list
-#     }
-#
-#     return render(request, 'adminapp/users.html', context)
-
-
 class UserCreateView(CreateView):
     model = User
     form_class = UserRegisterForm
-    template_name = 'adminapp/User_form.html'
+    template_name = 'adminapp/user_create.html'
+    form_class = UserRegisterForm
     success_url = reverse_lazy('admin_staff:users')
-
-# @user_passes_test(lambda u: u.is_superuser)
-# def user_create(request):
-#     title = 'пользователи/создание'
-#
-#     if request.method == 'POST':
-#         user_form = UserRegisterForm(request.POST, request.FILES)
-#         if user_form.is_valid():
-#             user_form.save()
-#
-#             return HttpResponseRedirect(reverse('admin_staff:users'))
-#     else:
-#         user_form = UserRegisterForm()
-#
-#     context = {
-#         'title': title,
-#         'update_form': user_form,
-#     }
-#
-#     return render(request, 'adminapp/user_update.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def user_update(request, pk):
-    title = 'пользователи/рудактирование'
+    title = 'пользователи/редактирование'
 
     edit_user = get_object_or_404(User, pk=pk)
 
@@ -121,6 +90,8 @@ class ProductCategoryCreateView(CreateView):
     model = ProductCategory
     template_name = 'adminapp/category_create.html'
     form_class = ProductCategoryEditForm
+    success_url = reverse_lazy('admin_staff:categories')
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -203,6 +174,20 @@ def products(request, pk):
     return render(request, 'adminapp/products.html', content)
 
 
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'adminapp/product_create.html'
+    form_class = ProductEditForm
+    success_url = reverse_lazy('admin_staff:categories')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductCreateView, self).get_context_data(**kwargs)
+        category = get_object_or_404(ProductCategory, pk=self.kwargs.get('pk'))
+        context.update({'category': category})
+
+        return context
+
+
 def product_create(request, pk):
     title = 'продукты/создание'
     product_category = get_object_or_404(ProductCategory, pk=pk)
@@ -247,7 +232,7 @@ def product_update(request, pk):
         if product_form.is_valid():
             product_form.save()
 
-            return HttpResponseRedirect(reverse('admin_staff:product_update', args=[product_form.pk]))
+            return HttpResponseRedirect(reverse('admin_staff:product_update', args=[pk]))
     else:
         product_form = ProductEditForm(instance=product)
 
@@ -261,7 +246,7 @@ def product_update(request, pk):
 
 
 def product_delete(request, pk):
-    title = 'пользователи/удаление'
+    title = 'продукты/удаление'
 
     product = get_object_or_404(Product, pk=pk)
 
@@ -273,7 +258,20 @@ def product_delete(request, pk):
 
     context = {
         'title': title,
-        'зкщвгсе_to_delete': product,
+        'product_to_delete': product,
+        'category_pk': product.category.pk,
     }
 
     return render(request, 'adminapp/product_delete.html', context)
+
+
+class OrderListView(ListView):
+    model = Order
+    template_name = 'adminapp/order_list.html'
+
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    template_name = 'adminapp/order_update.html'
+    fields = ('status',)
+    success_url = reverse_lazy('admin_staff:orders')

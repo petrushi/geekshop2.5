@@ -1,0 +1,52 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container_wrapper-fluid">
+        <h1 class="mt-4">Заказы</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Список заказов
+            </div>
+            <div class="card-body">
+                <div class="">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Пользователь</th>
+                                <th class="text-center">Статус</th>
+                                <th class="text-center">Дата создания</th>
+                                <th class="text-center">Дата изменения</th>
+                                <th class="text-center">Действия</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th class="text-center">Пользователь</th>
+                            <th class="text-center">Статус</th>
+                            <th class="text-center">Дата создания</th>
+                            <th class="text-center">Дата изменения</th>
+                            <th class="text-center">Действия</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for order in order_list %}
+                            <tr>
+                                <td>{{ order.user }}</td>
+                                <td>{{ order.status }}</td>
+                                <td>{{ order.created }}</td>
+                                <td>{{ order.updated }}</td>
+                                <td><a href="{% url 'admin_staff:order_update' order.pk %}" style="color: dodgerblue">Изменить статус</a></td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

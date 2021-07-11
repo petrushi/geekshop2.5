@@ -18,7 +18,6 @@
                                 <th class="text-center">Наименование</th>
                                 <th class="text-center">Количество</th>
                                 <th class="text-center">Цена</th>
-                                <th class="text-center">Удален</th>
                                 <th class="text-center">Удалить</th>
                             </tr>
                         </thead>
@@ -27,7 +26,6 @@
                             <th class="text-center">Наименование</th>
                             <th class="text-center">Количество</th>
                             <th class="text-center">Цена</th>
-                            <th class="text-center">Удален</th>
                             <th class="text-center">Удалить</th>
                         </tr>
                         </tfoot>
@@ -35,17 +33,14 @@
                         {% for product in product_list %}
                             <tr>
                                 <td><a href="{% url 'admin_staff:product_update' product.pk %}" style="color: dodgerblue">{{ product.name }}</a></td>
-                                <td>{{ user.quantity }}</td>
-                                <td>{{ user.price }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>{{ product.price }}</td>
                                 <td class="text-center">
-                                    {% if not product.is_delete %}
-                                        <i class="fa fa-check-circle"></i>
+                                        {% if not product.is_delete %}
+                                        <a href="{% url 'admin_staff:product_delete' product.pk %}">Удалить</a>
                                     {% else %}
-                                        <i class="fa fa-times-circle"></i>
+                                        Уже удален
                                     {% endif %}
-                                </td>
-                                <td class="text-center">
-                                    <a href="{% url 'admin_staff:product_delete' product.pk %}">Удалить</a>
                                 </td>
                             </tr>
                         {% endfor %}
