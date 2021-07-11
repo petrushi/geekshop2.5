@@ -18,7 +18,7 @@
                         <a href="{% url 'auth:edit' %}">
                             {{ user.first_name|default:'профиль' }}
                         </a>
-                      <a href="#">заказы</a>
+                      <a href="{% url 'ordersapp:orders_list' %}">заказы</a>
                     </div>
                 </div>
             </li>
