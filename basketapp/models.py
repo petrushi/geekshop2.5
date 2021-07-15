@@ -42,7 +42,23 @@ class Basket(models.Model):
         _total_cost = sum([x.product_cost for x in _items])
         return _total_cost
 
-    
     @staticmethod
     def get_items(user):
         return Basket.objects.filter(user=user)
+
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.get(id=pk)
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            self.product.quantity -= self.quantity - self.__class__.get_item(self.pk).quantity
+        else:
+            self.product.quantity -= self.quantity
+        self.product.save()
+        super(self.__class__, self).save(*args, **kwargs)
+
+    def delete(self):
+        self.product.quantity += self.quantity
+        self.product.save()
+        super(self.__class__, self).delete()

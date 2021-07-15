@@ -37,16 +37,7 @@
                   <a href="{% url 'auth:login' %}">войти</a>
                 {% endif %}
             </li>
-            {% if basket %}
-            <li>
-                <a href="{% url 'basket:list' %}" class="fa fa-shopping-basket">
-                    <span>
-                        {{ basket.0.total_cost|floatformat:0 }} руб
-                        ({{ basket.0.total_quantity }} шт.)
-                    </span>
-                </a>
-            </li>
-            {% endif %}
+            {% if basket %} {% include 'geekshop/includes/inc_basket_preview.html' %} {% endif %}
             <li>
                 <a href="#" class="search"></a>
             </li>

@@ -47,7 +47,6 @@ class OrderItemsCreate(CreateView):
         data['orderitems'] = formset
         return data
 
-
     def form_valid(self, form):
         context = self.get_context_data()
         orderitems = context['orderitems']
@@ -69,8 +68,9 @@ class OrderItemsCreate(CreateView):
 class OrderItemsUpdate(UpdateView):
     model = Order
     fields = []
-    success_url = reverse_lazy('ordersapp:orders_list')
 
+    def get_success_url(self):
+        return self.request.path
 
     def get_context_data(self, **kwargs):
         data = super(OrderItemsUpdate, self).get_context_data(**kwargs)
