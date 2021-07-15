@@ -1,14 +1,13 @@
 window.onload = function () {
-    console.log($('.basket_list'));
     $('.basket_list').on('change', 'input[type="number"]', function () {
         var t_href = event.target;
-        console.log(t_href);
 
         $.ajax({
             url: "/basket/edit/" + t_href.name + "/" + t_href.value + "/",
 
-            success: function (data) {
-                $('.basket_list').html(data.result);
+            success: (data) => {
+                $('.basket_preview').html(data.menu_result);
+                $('.basket_list').html(data.list_result)
             },
         });
         event.preventDefault();

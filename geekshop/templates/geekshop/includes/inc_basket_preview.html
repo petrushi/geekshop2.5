@@ -1,0 +1,10 @@
+<li>
+    <div class="basket_preview">
+    <a href="{% url 'basket:list' %}" class="fa fa-shopping-basket">
+      <span>
+        {{ basket.0.total_cost | floatformat:0 }} руб. 
+        {{ basket.0.total_quantity }} шт.
+      </span>
+    </a>
+    </div>
+</li>
