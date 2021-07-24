@@ -26,13 +26,12 @@ def get_same_products(hot_product):
     return  same_products
 
 
-
 def products(request, pk=None, page=1):
     title = 'продукты'
     category = ''
     products = ''
 
-    categories = ProductCategory.objects.all()
+    categories = ProductCategory.objects.filter(is_active=True)
     basket = get_basket(request.user)
 
     if pk is not None:

@@ -15,7 +15,7 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to='user_avatars', blank=True)
     age = models.PositiveIntegerField(verbose_name='возраст', default=18)
 
-    is_delete = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     activation_key = models.CharField(max_length=128, blank=True)
     activation_key_expires = models.DateTimeField(blank=True)

@@ -36,7 +36,7 @@
                                 <td>{{ product.quantity }}</td>
                                 <td>{{ product.price }}</td>
                                 <td class="text-center">
-                                        {% if not product.is_delete %}
+                                        {% if product.is_active %}
                                         <a href="{% url 'admin_staff:product_delete' product.pk %}">Удалить</a>
                                     {% else %}
                                         Уже удален

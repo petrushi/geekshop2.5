@@ -7,12 +7,12 @@ from mainapp.models import Product, ProductCategory
 class UserRegisterForm(UserEditForm):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'avatar', 'is_active', 'is_staff', 'is_delete')
+        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'avatar', 'is_active', 'is_staff')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            if 'is_delete' in field_name or 'is_active' in field_name or 'is_staff' in field_name:
+            if 'is_active' in field_name or 'is_staff' in field_name:
                 field.widget.attrs['class'] = ''
             else:
                 field.widget.attrs['class'] = 'form-control'
@@ -27,11 +27,11 @@ class ProductEditForm(UserEditForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            if 'is_delete' in field_name:
-                field.widget.attrs['class'] = ''
-            else:
+            if 'is_active' in field_name:
                 field.widget.attrs['class'] = 'form-control'
                 field.help_text = ''
+            else:
+                field.widget.attrs['class'] = ''
 
 
 class ProductCategoryEditForm(forms.ModelForm):
@@ -42,8 +42,8 @@ class ProductCategoryEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            if 'is_delete' in field_name:
-                field.widget.attrs['class'] = ''
-            else:
+            if 'is_active' in field_name:
                 field.widget.attrs['class'] = 'form-control'
                 field.help_text = ''
+            else:
+                field.widget.attrs['class'] = ''

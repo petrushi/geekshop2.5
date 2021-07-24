@@ -19,7 +19,7 @@ class UserListView(LoginRequiredMixin, ListView):
     context_object_name = 'objects'
 
     def get_queryset(self):
-        return User.objects.filter(is_delete=False)
+        return User.objects.filter(is_active=True)
 
 
 class UserCreateView(CreateView):
@@ -59,7 +59,6 @@ def user_delete(request, pk):
     user = get_object_or_404(User, pk=pk)
 
     if request.method == 'POST':
-        user.is_delete = True
         user.is_active = False
         user.save()
 
@@ -154,7 +153,7 @@ def products(request, pk):
     title = 'админка/категории продуктов'
 
     if pk == 0:
-        categories = ProductCategory.objects.filter(is_delete=False)
+        categories = ProductCategory.objects.filter(is_active=True)
         context = {
             'title': title,
             'objects': categories,
@@ -251,7 +250,7 @@ def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
     if request.method == 'POST':
-        product.is_delete = True
+        product.is_active = False
         product.save()
 
         return HttpResponseRedirect(reverse('admin_staff:products', args=[product.category.pk]))

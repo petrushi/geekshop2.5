@@ -16,13 +16,13 @@ class ProductCategory(models.Model):
         auto_now=True
     )
 
-    is_delete = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.name} - {self.id} -- {self.created}'
 
     class Meta:
-        verbose_name = 'категория',
+        verbose_name = 'категория'
         verbose_name_plural = 'категории'
 
 
@@ -70,7 +70,7 @@ class Product(models.Model):
         auto_now=True
     )
 
-    is_delete = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.name} - {self.id} -- {self.created}'
@@ -78,3 +78,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
+
+    @staticmethod
+    def get_items():
+        return Product.objects.filter(is_active=True).order_by('category', 'name')
