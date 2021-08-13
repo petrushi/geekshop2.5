@@ -141,9 +141,7 @@ class ProductsListView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data(**kwargs)
-
         category = get_object_or_404(ProductCategory, pk=self.kwargs.get('pk'))
-
         context.update({'category': category})
 
         return context

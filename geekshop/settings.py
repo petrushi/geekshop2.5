@@ -49,6 +49,10 @@ INSTALLED_APPS = [
     'adminapp',
     'social_django',
     'ordersapp',
+
+    'debug_toolbar',
+    'template_profiler_panel',
+    'django_extensions',
 ]
 
 AUTH_USER_MODEL = 'authapp.User'
@@ -67,8 +71,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware'
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 ]
+
+if DEBUG:
+    def show_toolbar(request):
+        return True
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+    }
 
 ROOT_URLCONF = 'geekshop.urls'
 
@@ -98,11 +112,8 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'gshop',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': 'django',
-        'PASSWORD': 'geekbrains',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 

@@ -38,7 +38,7 @@ class Basket(models.Model):
 
     @property
     def total_cost(self):
-        _items = Basket.objects.filter(user=self.user)
+        _items = Basket.objects.filter(user=self.user).select_related()
         _total_cost = sum([x.product_cost for x in _items])
         return _total_cost
 

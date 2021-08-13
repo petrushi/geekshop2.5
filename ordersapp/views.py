@@ -28,16 +28,14 @@ class OrderItemsCreate(CreateView):
 
     def get_context_data(self, **kwargs):
         data = super(OrderItemsCreate, self).get_context_data(**kwargs)
-        OrderFormSet = inlineformset_factory(Order, OrderItem, \
-                                            form=OrderItemForm, extra=1)
+        OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
 
         if self.request.POST:
             formset = OrderFormSet(self.request.POST)
         else:
             basket_items = Basket.get_items(self.request.user)
             if len(basket_items):
-                OrderFormSet = inlineformset_factory(Order, OrderItem, \
-                                  form=OrderItemForm, extra=len(basket_items))
+                OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=len(basket_items))
                 formset = OrderFormSet()
                 for num, form in enumerate(formset.forms):
                    form.initial['product'] = basket_items[num].product
@@ -82,7 +80,8 @@ class OrderItemsUpdate(UpdateView):
         if self.request.POST:
             data['orderitems'] = OrderFormSet(self.request.POST, instance=self.object)
         else:
-            formset = OrderFormSet(instance=self.object)
+            queryset = self.object.orderitems.select_related()
+            formset = OrderFormSet(instance=self.object, queryset=queryset)
             for form in formset.forms:
                 if form.instance.pk:
                     form.initial['price'] = form.instance.product.price
