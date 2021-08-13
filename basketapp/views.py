@@ -13,8 +13,7 @@ def basket(request):
     title = 'Корзина'
     basket_items = []
     if request.user.is_authenticated:
-        basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
-
+        basket_items = Basket.objects.select_related()
     context = {
         'basket': basket_items,
         'title': title,
