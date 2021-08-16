@@ -1,6 +1,7 @@
 {% extends 'geekshop/base.html' %}
 
 {% load static %}
+{% load cache %}
 
 {% block main_slider %}
   <div class="container_wrapper">
@@ -17,12 +18,15 @@
             <a href="{% url 'products:category' 0 %}"
                class="{% if request.resolver_match.kwargs.pk == 0 %} active {% endif %}">все</a>
           </li>
+          {% cache 3600 categories %}
           {% for link in categories %}
           <li>
             <a href="{% url 'products:category' link.pk %}"
                class="{% if request.resolver_match.kwargs.pk == link.pk %}active{% endif %}">{{ link.name }}</a>
           </li>
           {% endfor %}
+          {% endcache %}
+
         </ul>
       </div>
        

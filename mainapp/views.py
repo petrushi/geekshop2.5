@@ -30,8 +30,6 @@ def products(request, pk=None, page=1):
     title = 'продукты'
     category = ''
     products = ''
-
-    categories = ProductCategory.objects.filter(is_active=True)
     basket = get_basket(request.user)
 
     if pk is not None:
@@ -42,24 +40,23 @@ def products(request, pk=None, page=1):
                 'name': 'все'
             }
         else:
-            category = get_object_or_404(ProductCategory, pk=pk)
+            category = ProductCategory.objects.filter(is_active=True)
             products = Product.objects.filter(category_id__pk=pk).order_by('price')
 
-        paginator = Paginator(products, 2)
+    paginator = Paginator(products, 2)
 
-        try:
-            products_paginator = paginator.page(page)
-        except PageNotAnInteger:
-            products_paginator = paginator.page(1)
-        except EmptyPage:
-            products_paginator = paginator.page(paginator.num_pages)
+    try:
+        products_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        products_paginator = paginator.page(1)
+    except EmptyPage:
+        products_paginator = paginator.page(paginator.num_pages)
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
-
     context = {
         'title': title,
-        'categories': categories,
+        'categories': ProductCategory.objects.filter(is_active=True),
         'category': category,
         'products': products_paginator,
         'basket': basket,
@@ -74,9 +71,10 @@ def product(request, pk):
     title = 'страница продута'
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
+    
     context = {
         'title': title,
-        'categories': ProductCategory.objects.all(),
+        'categories': ProductCategory.objects.filter(is_active=True),
         'product': get_object_or_404(Product, pk=pk),
         'basket': get_basket(request.user),
         'hot_product': hot_product,
