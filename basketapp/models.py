@@ -31,8 +31,6 @@ class Basket(models.Model):
     def product_cost(self):
         return self.product.price * self.quantity
 
-
-
     @cached_property
     def get_items_cached(self):
         return self.user.basket.select_related()
