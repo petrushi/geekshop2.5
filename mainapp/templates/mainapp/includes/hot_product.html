@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/mainapp/style.css' %}">
+
+<div class="hot-card">
+      <button class="close-button"><h1>&times;</h1></button>
+      <div class="hot-slider">
+        <div class="slider-main">
+          <img src="/media/{{ hot_product.image }}">
+        </div>
+        <div class="slider-control">
+          <a href="#"><img src="/media/{{ hot_product.image }}" alt=""></a>
+          <a href="#"><img src="/media/{{ hot_product.image }}" alt=""></a>
+          <a href="#"><img src="/media/{{ hot_product.image }}" alt=""></a>
+        </div>
+      </div>
+
+    <div class="slider-info">
+      <p class="big-bold"><strong>{{ hot_product.name }}</strong></p>
+      <p class="red"><strong>горячее предложение</strong></p>
+      <p class="price">{{ hot_product.price }} <span>руб</span></p>
+      <a href="{% url 'basket:add' hot_product.pk %}" class="red-button">
+        заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <p class="description-text">
+        {{ hot_product.short_description }}
+      </p>
+    </div>
+</div>
+<script src="{% static '/mainapp/close_hot.js' %}"></script>

@@ -508,23 +508,6 @@ html, body {
 	text-transform: uppercase;
 	margin-bottom: 22px;
 }
-.big-mobile {
-	color:  #212121;
-	font-size: 59px;
-	line-height: 67px;
-	text-transform: uppercase;
-	font-weight: 100;
-	margin-bottom: 26px;
-}
-.text-mobile a img {
-	float: left;
-	padding-right: 10px;
-	margin-top: 33px;
-}
-.text-mobile p {
-	font-size: 22px;
-	color: #6c6c6c;
-}
 .footer {
 	height: 384px;
 	background-color: #f7f7f7;
@@ -906,8 +889,8 @@ td:first-child {
 }
 .red-button {
 	display: block;
-	height: 71px;
-	width: 510px;
+	height: 51px;
+	width: 310px;
 	border-radius: 35px;
 	background-color: #f44336;
 	text-align: center;
@@ -918,7 +901,7 @@ td:first-child {
 	font-weight: 700;
 	line-height: 24px;
 	box-shadow: 0px 2px 4.85px 0.15px rgba(33, 33, 33, 0.35);
-	line-height: 70px;
+	line-height: 50px;
 	letter-spacing: 6px;
 	margin-top: 31px;
 }
@@ -1039,3 +1022,25 @@ td:first-child {
 	color: #212121;
 	font-weight: 700;
 } 
+.slider-main {
+	width: 400px;
+	height: 400px;
+	margin: 20px 0 0 20px;
+}
+.slider-main img {
+	height: 350px;
+}
+.slider-control {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	width: 350px;
+	height: 70px;
+	margin: 0 20px 20px 20px;
+}
+.slider-control img {
+	width: 75px;
+}
+.slider-info {
+	margin: auto 0 auto 0;
+}

@@ -1,5 +1,6 @@
 {% extends 'geekshop/base.html' %}
 {% load static %}
+{% load cache %}
 
 {% block style %}
 	<link rel="stylesheet" type="text/css" href="{% static '/mainapp/style.css' %}">
@@ -8,29 +9,8 @@
 {% block content %}
 	{% include 'geekshop/includes/inc_main_menu.html' %}
       <div class="details">
-         <div class="links clearfix">
-                <ul class="links-menu">
-					<li>
-						<a href="{% url 'products:category' 0 %}"
-						   class="{% if request.resolver_match.kwargs.pk == '0' %}
-									active
-								  {% endif %}">
-							все
-						</a>
-					</li>
-					{% for link in categories %}
-						<li>
-							<a href="{% url 'products:category' link.pk %}"
-							   class="{% if request.resolver_match.kwargs.pk == link.pk %}
-										active
-									  {% endif %}">
-								{{ link.name }}
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
-		 </div>
-        <div class="row my-5">
+        {% include 'mainapp/includes/products_menu.html'%}
+        <div class="product">
             <div class="col-6">
                 <div class="slider-product text-center">
                   <img src="/media/{{ product.image }}" class="w-50">
@@ -50,14 +30,13 @@
 
               <div class="col-6">
                 <h3 class="big-bold">{{ product.name }}</h3>
-
+                <p class="description-text">
+                  {{ product.description }}
+                </p>
                 <p class="price">{{ product.price }} <span>руб</span></p>
                 <a href="{% url 'basket:add' product.pk %}" class="red-button">
                   заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
-                <div class="description-text">
-                  {{ product.description }}
-                </div>
             </div>
         </div>
     </div>
