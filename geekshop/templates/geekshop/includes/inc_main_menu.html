@@ -1,40 +1,41 @@
 <div class="header clearfix">
-    <a href="{% url 'index' %}" class="logo"></a>
-    <ul class="menu" style="height: 30px;">
-        <li><a href="{% url 'index' %}" class="{% if request.path == '/'  %} active {% endif %}">домой</a></li>
-        <li><a href="{% url 'products:category' 0 %}" class="{% if '/product' in request.path %} active {% endif %}">продукты</a></li>
-        <li><a href="{% url 'contacts' %}" class="{% if '/contact' in request.path %} active {% endif %}">контакты</a></li>
-        {% if user.is_authenticated %}
-            <li>
-                <div class="dropdown">
-                    <a class="dropbtn {% if '/auth' in request.path %} active {% endif %}">пользователь</a>
-                    <div class="dropdown-content">
-                        <a href="{% url 'auth:edit' %}">
-                            {{ user.first_name|default:'профиль' }}
-                        </a>
-                      <a href="{% url 'ordersapp:orders_list' %}">заказы</a>
-                    </div>
-                </div>
-            </li>
-        {% endif %}
-    {% if user.is_superuser %}
-        <li>
-            <a href="{% url 'admin_staff:users' %}">
-                    админка
-            </a>
-        </li>
+  <a href="{% url 'index' %}" class="logo"></a>
+  <ul class="menu" style="height: 30px;">
+    <li><a href="{% url 'index' %}" class="{% if request.path == '/'  %} active {% endif %}">домой</a></li>
+    <li><a href="{% url 'products:category' 0 %}"
+        class="{% if '/product' in request.path %} active {% endif %}">продукты</a></li>
+    <li><a href="{% url 'contacts' %}" class="{% if '/contact' in request.path %} active {% endif %}">контакты</a></li>
+    {% if user.is_authenticated %}
+    <li>
+      <div class="dropdown">
+        <a class="dropbtn {% if '/auth' in request.path %} active {% endif %}">пользователь</a>
+        <div class="dropdown-content">
+          <a href="{% url 'auth:edit' %}">
+            {{ user.first_name|default:'профиль' }}
+          </a>
+          <a href="{% url 'ordersapp:orders_list' %}">заказы</a>
+        </div>
+      </div>
+    </li>
     {% endif %}
-            <li>
-                {% if user.is_authenticated %}
-                  <a href="{% url 'auth:logout' %}">выйти</a>
-                {% else %}
-                  <a href="{% url 'auth:login' %}">войти</a>
-                {% endif %}
-            </li>
-            {% if basket %} {% include 'geekshop/includes/inc_basket_preview.html' %} {% endif %}
-            <li>
-                <a href="#" class="search"></a>
-            </li>
-    </ul>
+    {% if user.is_superuser %}
+    <li>
+      <a href="{% url 'admin_staff:users' %}">
+        админка
+      </a>
+    </li>
+    {% endif %}
+    <li>
+      {% if user.is_authenticated %}
+      <a href="{% url 'auth:logout' %}">выйти</a>
+      {% else %}
+      <a href="{% url 'auth:login' %}">войти</a>
+      {% endif %}
+    </li>
+    {% if basket %} {% include 'geekshop/includes/inc_basket_preview.html' %} {% endif %}
+    <li>
+      <a href="#" class="search"></a>
+    </li>
+  </ul>
 
 </div>
