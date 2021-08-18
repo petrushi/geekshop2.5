@@ -991,15 +991,14 @@ td:first-child {
 .dropdown .dropbtn{
 	position: relative;
 	display: inline-block;
-	color: #8c8c8c;
 	font-size: 14px;
 	font-weight: 700;
 	text-align: right;
 	text-transform: uppercase;
 	text-decoration: none;
-	padding: 10px 13px;
+	padding: 0 13px 10px 13px;
 	background-color: transparent;
-	line-height: 0.1;}
+}
 
 .dropdown-content {
 	display: none;
