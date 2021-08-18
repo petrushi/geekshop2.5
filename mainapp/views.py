@@ -70,9 +70,9 @@ def products(request, pk=None, page=1):
 
 
 def product(request, pk):
-    title = 'страница продута'
+    title = 'страница продукта'
     hot_product = get_hot_product()
-    same_products = get_same_products(hot_product)
+    same_products = get_same_products(get_object_or_404(Product, pk=pk))
 
     context = {
         'title': title,
