@@ -2,7 +2,8 @@
 	width:250px
 }
 .w-50 {
-	width:250px
+	max-width: 250px;
+	max-height: 250px;
 }
 .category-products {
 	display: flex;
@@ -38,7 +39,8 @@
 	margin: 20px 0 0 20px;
 }
 .slider-main img {
-	height: 350px;
+	max-height: 250px;
+	max-width: 250px
 }
 .slider-control {
 	display: flex;
