@@ -10,6 +10,7 @@ html, body {
 	height: 100%;
 }
 .clr {
+	margin: 35px 0 0 0;
 	height: 384px;
 }
 .container_wrapper {
@@ -1019,3 +1020,56 @@ td:first-child {
 	color: #212121;
 	font-weight: 700;
 } 
+
+
+
+.login_container {
+	width: 420px;
+	margin: 30px auto 0;
+}
+.body {
+    background-color: red;
+}
+.messages {
+	position: absolute;
+	z-index: 1;
+	top: 50px;
+	right: 50px;
+	list-style: none;
+}
+
+.messages > li {
+	padding: 10px 15px;
+	margin-bottom: 20px;
+	border-radius: 3px;
+	font-weight: bold;
+	list-style: none;
+}
+
+.success {
+	background: rgb(197, 235, 197);
+}
+
+.error {
+	background: rgb(255, 234, 234);
+}
+.orders_list {
+    min-height: 200px;
+}
+.submit-btn {
+	width: 150px;
+	height: 35px;
+	color: #8c8c8c;
+	font-size: 24px;
+	font-weight: 700;
+	text-align: right;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 13px;
+	margin: 15px 110px 15px 110px;
+}
+.submit-btn:hover {
+	color: #212121;
+	font-weight: 700;
+	border-bottom: 3px solid #212121;
+}

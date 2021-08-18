@@ -8,7 +8,7 @@
     {% if user.is_authenticated %}
     <li>
       <div class="dropdown">
-        <a class="dropbtn {% if '/auth' in request.path %} active {% endif %}">пользователь</a>
+        <a class="dropbtn {% if '/auth' in request.path %} active {% endif %} {% if '/order' in request.path %} active {% endif %}">пользователь</a>
         <div class="dropdown-content">
           <a href="{% url 'auth:edit' %}">
             {{ user.first_name|default:'профиль' }}

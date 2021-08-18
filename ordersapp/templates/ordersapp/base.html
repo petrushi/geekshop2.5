@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% extends 'geekshop/base.html' %}
 {% load static %}
 <html>
 <head>
@@ -9,7 +9,7 @@
     {% endblock %}
   </title>
     {% block css %}
-      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'ordersapp/css/style.css' %}">
       <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
     {% endblock %}
     {% block js %}
@@ -21,7 +21,6 @@
 <body>
   <div class="order_container">
     {% block content %}
-
     {% endblock %}
   </div>
 </body>
