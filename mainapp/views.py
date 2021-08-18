@@ -38,7 +38,7 @@ def products(request, pk=None, page=1):
             products = Product.objects.all().order_by('price')
             category = {
                 'pk': 0,
-                'name': 'все'
+                'name': 'Все'
             }
         else:
             category = get_object_or_404(ProductCategory, pk=pk)

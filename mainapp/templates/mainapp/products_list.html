@@ -5,27 +5,26 @@
 
 {% block main_slider %}
   <div class="container_wrapper">
-    <div class="hero-white">
-      {% include 'geekshop/includes/inc_main_menu.html' %}
-    </div>
 {% endblock %}
 {% block content %}
 
     <div class="details">
       {% include 'mainapp/includes/products_menu.html' %}
       <div class="section">
-        <h2>
-          Категория: {{ category.name }}
-        </h2>
+        <div class="category-title">
+          <p>
+            Категория: {{ category.name }}
+          </p>
+        </div>
         <div class="paginator">
           {% if products.has_previous %}
-          <a href="{% url 'products:page' category.pk products.previous_page_number %}"><</a>
+          <a href="{% url 'products:page' category.pk products.previous_page_number %}"><<<</a>
           {% endif %}
         <span class="current">
           страница {{ products.number }} из {{ products.paginator.num_pages }}
         </span>
           {% if products.has_next %}
-          <a href="{% url 'products:page' category.pk products.next_page_number %}">></a>
+          <a href="{% url 'products:page' category.pk products.next_page_number %}">>>></a>
           {% endif %}
         </div>
         <div class="category-products">

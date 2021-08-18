@@ -11,19 +11,19 @@
       <div class="details">
         {% include 'mainapp/includes/products_menu.html'%}
         <div class="product">
-            <div class="col-6">
-                <div class="slider-product text-center">
-                  <img src="/media/{{ product.image }}" class="w-50">
+            <div class="product-photos">
+                <div class="slider-main">
+                  <img src="/media/{{ product.image }}">
                 </div>
-                <div class="slider-control ml-2 my-3 d-flex text-center">
+                <div class="slider-control">
                   <div class="block">
-                    <a href="#"><img src="/media/{{ product.image }}" alt="" class="w-25"></a>
+                    <a href="#"><img src="/media/{{ product.image }}" alt=""></a>
                   </div>
                   <div class="block">
-                    <a href="#"><img src="/media/{{ product.image }}" alt="" class="w-25"></a>
+                    <a href="#"><img src="/media/{{ product.image }}" alt=""></a>
                   </div>
                   <div class="block">
-                    <a href="#"><img src="/media/{{ product.image }}" alt="" class="w-25"></a>
+                    <a href="#"><img src="/media/{{ product.image }}" alt=""></a>
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
             <div class="related-products clearfix">
                 {% for same_prod in same_products%}
                <div class="block">
-                  <a href="#"><img src="/media/{{ same_prod.image }}" alt="">
+                  <a href="#"><img class="related-img" src="/media/{{ same_prod.image }}" alt="">
                      <div class="text">
                         <img src="/static/img/icon-hover.png" alt="img">
                       <h4>{{ same_prod.name }}</h4>
