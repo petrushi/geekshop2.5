@@ -5,7 +5,7 @@ from django.urls import reverse
 from authapp.models import User
 from django.contrib import messages
 from django.db import transaction
-
+from mainapp.views import get_basket
 from authapp.forms import UserLoginForm, UserRegisterForm, UserEditForm, UserProfileEditForm
 
 
@@ -65,7 +65,8 @@ def register(request):
 @transaction.atomic
 def edit(request):
     title = 'редактирование'
-    
+    basket = get_basket(request.user)
+
     if request.method == 'POST':
         edit_form = UserEditForm(request.POST, request.FILES, \
                                      instance=request.user)
@@ -81,6 +82,7 @@ def edit(request):
         )
     
     content = {
+        'basket': basket,
         'title': title, 
         'edit_form': edit_form, 
         'profile_form': profile_form

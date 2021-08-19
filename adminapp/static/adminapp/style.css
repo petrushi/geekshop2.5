@@ -31,6 +31,7 @@ a {
 }
 
 .header {
+    max-width: 1440px;
     width: 100%;
     height: var(--header-height);
     position: fixed;
