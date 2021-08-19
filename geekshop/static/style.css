@@ -1025,10 +1025,19 @@ td:first-child {
 
 .login_container {
 	width: 420px;
-	margin: 30px auto 0;
+	margin: 30px auto 0 auto;
 }
 .body {
     background-color: red;
+}
+.btn {
+	color: #8c8c8c;
+font-size: 14px;
+font-weight: 700;
+text-align: right;
+text-transform: uppercase;
+text-decoration: none;
+padding: 10px 13px;
 }
 .messages {
 	position: absolute;
@@ -1088,4 +1097,8 @@ table tr {
 	width: 700px;
 	display: flex;
 	justify-content: space-between;
+}
+td {
+	min-height: 25px;
+	margin: 5px 0 5px 0;
 }

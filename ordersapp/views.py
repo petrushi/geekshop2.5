@@ -12,13 +12,14 @@ from ordersapp.models import Order, OrderItem
 from ordersapp.forms import OrderItemForm
 from django.http import JsonResponse
 from mainapp.models import Product
+from mainapp.views import get_basket
 
 
 class OrderList(ListView):
-   model = Order
+    model = Order
 
-   def get_queryset(self):
-       return Order.objects.filter(user=self.request.user)
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
 
 
 class OrderItemsCreate(CreateView):
