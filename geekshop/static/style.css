@@ -1073,3 +1073,19 @@ td:first-child {
 	font-weight: 700;
 	border-bottom: 3px solid #212121;
 }
+.table-bordered {
+    border: 2px solid black
+}
+table tr {
+    border: 1px solid black;
+    font-size: large;
+    min-height: 20px;
+}
+.form-horizontal p  {
+	border: 1px solid rgb(213, 221, 228);
+	font-size: large;
+	margin: 10px 10px 10px 10px;
+	width: 700px;
+	display: flex;
+	justify-content: space-between;
+}
