@@ -38,8 +38,8 @@
             <tbody>
               {% for user in objects %}
               <tr>
-                <td><a href="{% url 'admin_staff:user_update' user.id %}" style="color: dodgerblue">{{ user.username
-                    }}</a></td>
+                <td><a href="{% url 'admin_staff:user_update' user.id %}" style="color: dodgerblue">
+                  {{ user.username }}</a></td>
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
